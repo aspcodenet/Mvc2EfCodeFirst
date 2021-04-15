@@ -1,0 +1,22 @@
+﻿@model  Mvc2EfCodeFirst.ViewModels.BilIndexViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Bilar</h1>
+
+<table class="table">
+    <tbody>
+    @foreach (var bil in Model.Items)
+    {
+        <tr>
+            <td>@bil.Manufacturer</td>
+            <td><a asp-action="Edit" asp-route-id="@bil.Id" class="btn btn-primary" >Edit</a></td>
+        </tr>
+    }
+    </tbody>
+</table>
+<hr/>
+
+<a asp-action="New" class="btn btn-primary">New</a>

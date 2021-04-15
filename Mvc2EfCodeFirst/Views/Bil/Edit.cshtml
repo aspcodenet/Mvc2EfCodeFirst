@@ -1,0 +1,32 @@
+﻿@model  Mvc2EfCodeFirst.ViewModels.BilEditViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Edit bil</h1>
+
+
+<form method="post">
+    Manufacturer:
+    <input asp-for="Manufacturer" /> <br /><span asp-validation-for="Manufacturer"></span><br />
+
+    Model:
+    <input asp-for="Model" /> <br /><span asp-validation-for="Model"></span><br />
+
+    Color:
+    <input asp-for="Color" /> <br /><span asp-validation-for="Color"></span><br />
+
+    Price:
+    <input asp-for="Price" /> <br /><span asp-validation-for="Price"></span><br />
+
+
+    Year:
+    <input asp-for="Year" /> <br /><span asp-validation-for="Year"></span><br />
+
+
+    <hr />
+
+    <button type="submit">Spara</button>
+</form>
+

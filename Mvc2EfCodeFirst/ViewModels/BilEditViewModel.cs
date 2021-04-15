@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Mvc2EfCodeFirst.Data
+namespace Mvc2EfCodeFirst.ViewModels
 {
-    public class Bil
+    public class BilEditViewModel
     {
         public int Id { get; set; }
 
@@ -18,6 +18,5 @@ namespace Mvc2EfCodeFirst.Data
 
         [MaxLength(30)]
         public string Color { get; set; }
-
     }
 }
