@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.IO;
+using System.Linq;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Mvc2EfCodeFirst.Data;
@@ -9,10 +12,14 @@ namespace Mvc2EfCodeFirst.Controllers
     public class BilController : Controller
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly IWebHostEnvironment _environment;
 
-        public BilController(ILogger<BilController> logger, ApplicationDbContext dbContext)
+        public BilController(ILogger<BilController> logger, ApplicationDbContext dbContext,
+            IWebHostEnvironment environment
+            )
         {
             _dbContext = dbContext;
+            _environment = environment;
         }
 
 
@@ -37,6 +44,20 @@ namespace Mvc2EfCodeFirst.Controllers
             return View(viewModel);
         }
 
+
+        [HttpGet]
+        public IActionResult RegNoDuplicateCheck(string RegNo)
+        {
+            if (_dbContext.Bil.Any(r => r.RegNo == RegNo))
+            {
+                return Json("Bilen är redan registrerad");
+            }
+
+            return Json(true);
+
+        }
+
+
         [HttpPost]
         public IActionResult New(BilNewViewModel viewModel)
         {
@@ -48,20 +69,28 @@ namespace Mvc2EfCodeFirst.Controllers
                     Manufacturer = viewModel.Manufacturer,
                     Year = viewModel.Year,
                     Price = viewModel.Price,
-                    Color = viewModel.Color
+                    Color = viewModel.Color,
+                    RegNo = viewModel.RegNo
                 };
                 _dbContext.Bil.Add(bil);
                 _dbContext.SaveChanges();
+
+
+                string filename = bil.Id + ".jpg";
+                string totalPath = Path.Combine(_environment.WebRootPath,
+                    "images", filename);
+                using (var fileStream = new FileStream(totalPath, FileMode.Create))
+                {
+                    viewModel.NyBild.CopyTo(fileStream);
+                }
+
+
+
+
                 return RedirectToAction("Index");
             }
             return View(viewModel);
         }
-
-
-
-
-
-
 
 
 
@@ -76,7 +105,8 @@ namespace Mvc2EfCodeFirst.Controllers
                 Year = bil.Year,
                 Price = bil.Price,
                 Color = bil.Color,
-                Id = bil.Id
+                Id = bil.Id,
+                RegNo = bil.RegNo
             };
 
             return View(viewModel);
@@ -93,7 +123,19 @@ namespace Mvc2EfCodeFirst.Controllers
                 bil.Manufacturer = viewModel.Manufacturer;
                 bil.Year = viewModel.Year;
                 bil.Price = viewModel.Price;
+                bil.RegNo = viewModel.RegNo;
                 _dbContext.SaveChanges();
+
+
+                string filename = viewModel.Id + ".jpg";
+                string totalPath = Path.Combine(_environment.WebRootPath, 
+                    "images", filename);
+                using (var fileStream = new FileStream(totalPath, FileMode.Create))
+                {
+                    viewModel.NyBild.CopyTo(fileStream);
+                }
+
+
                 return RedirectToAction("Index");
             }
             return View(viewModel);

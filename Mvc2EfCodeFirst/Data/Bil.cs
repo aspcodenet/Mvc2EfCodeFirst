@@ -12,6 +12,11 @@ namespace Mvc2EfCodeFirst.Data
         [MaxLength(30)]
         public string Model { get; set; }
 
+
+        [MaxLength(6)]
+        public string RegNo { get; set; }
+
+
         public int Year { get; set; }
 
         public decimal Price { get; set; }

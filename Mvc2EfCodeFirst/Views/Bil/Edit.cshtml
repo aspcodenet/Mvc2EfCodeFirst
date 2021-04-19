@@ -7,7 +7,13 @@
 <h1>Edit bil</h1>
 
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
+
+    RegNo:
+    <input asp-for="RegNo" /> <br /><span asp-validation-for="RegNo"></span><br />
+
+
+
     Manufacturer:
     <input asp-for="Manufacturer" /> <br /><span asp-validation-for="Manufacturer"></span><br />
 
@@ -23,6 +29,18 @@
 
     Year:
     <input asp-for="Year" /> <br /><span asp-validation-for="Year"></span><br />
+
+
+    Bilden:
+
+    <img src="~/images/@(Model.Id).jpg" /><br/><br />
+    
+
+    Nya bilden:
+    <input asp-for="NyBild"/>
+    <span asp-validation-for="@Model.NyBild" class="text-danger"></span>
+    
+    
 
 
     <hr />
