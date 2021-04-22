@@ -20,7 +20,8 @@
     <input asp-for="Model" /> <br /><span asp-validation-for="Model"></span><br />
 
     Color:
-    <input asp-for="Color" /> <br /><span asp-validation-for="Color"></span><br />
+    <select asp-for="SelectedColorValue" asp-items="@Model.AllColors"></select>
+    <br /><span asp-validation-for="SelectedColorValue"></span><br />
 
     Price:
     <input asp-for="Price" /> <br /><span asp-validation-for="Price"></span><br />

@@ -21,8 +21,7 @@ namespace Mvc2EfCodeFirst.Data
 
         public decimal Price { get; set; }
 
-        [MaxLength(30)]
-        public string Color { get; set; }
+        public Color BilColor { get; set; }
 
     }
 }

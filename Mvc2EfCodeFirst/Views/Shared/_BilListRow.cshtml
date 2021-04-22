@@ -1,0 +1,34 @@
+﻿@model Mvc2EfCodeFirst.ViewModels.BilListItem
+
+<tr>
+    <td>@Model.Manufacturer</td>
+    <td>
+        @{
+            string title = "";
+            if (Model.Price > 500)
+            {
+                title = "Dyr";
+            }
+            else if (Model.Price > 100)
+            {
+                title = "Billig";
+            }
+            else if (Model.Price < 1 )
+            {
+                title = "GRATIS!!!!";
+            }
+        }
+        @if (title.Length > 0)
+        {
+            <span data-toggle="tooltip" data-placement="top" title="@title">
+                @Model.Price
+            </span>
+        }
+        else
+        {
+            @Model.Price
+        }
+    </td>
+    @*Tänk dig 100-tals rader kod här*@
+    <td><a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a></td>
+</tr>

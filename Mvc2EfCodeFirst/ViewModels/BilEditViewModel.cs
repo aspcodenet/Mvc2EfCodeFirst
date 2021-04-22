@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Mvc2EfCodeFirst.ViewModels
 {
@@ -22,10 +24,15 @@ namespace Mvc2EfCodeFirst.ViewModels
 
         public decimal Price { get; set; }
 
-        [MaxLength(30)]
-        public string Color { get; set; }
 
         public IFormFile NyBild { get; set; }
+
+
+
+        [Required]
+        public string SelectedColorValue { get; set; }
+        public List<SelectListItem> AllColors { get; set; }
+
 
     }
 }

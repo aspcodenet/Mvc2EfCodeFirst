@@ -21,7 +21,8 @@
     <input asp-for="Model" /> <br /><span asp-validation-for="Model"></span><br />
 
     Color:
-    <input asp-for="Color" /> <br /><span asp-validation-for="Color"></span><br />
+    <select asp-for="SelectedColorValue" asp-items="@Model.AllColors"></select>
+    <br /><span asp-validation-for="SelectedColorValue"></span><br />
 
     Price:
     <input asp-for="Price" /> <br /><span asp-validation-for="Price"></span><br />
@@ -33,14 +34,14 @@
 
     Bilden:
 
-    <img src="~/images/@(Model.Id).jpg" /><br/><br />
-    
+    <img src="~/images/@(Model.Id).jpg" /><br /><br />
+
 
     Nya bilden:
-    <input asp-for="NyBild"/>
+    <input asp-for="NyBild" />
     <span asp-validation-for="@Model.NyBild" class="text-danger"></span>
-    
-    
+
+
 
 
     <hr />

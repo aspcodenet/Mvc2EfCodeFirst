@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mvc2EfCodeFirst.Data;
 
 namespace Mvc2EfCodeFirst.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210422081919_Color2")]
+    partial class Color2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,7 +71,7 @@ namespace Mvc2EfCodeFirst.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Colors");
+                    b.ToTable("Color");
                 });
 
             modelBuilder.Entity("Mvc2EfCodeFirst.Data.Bil", b =>

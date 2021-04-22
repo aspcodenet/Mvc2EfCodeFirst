@@ -6,6 +6,7 @@ namespace Mvc2EfCodeFirst.Data
     public class ApplicationDbContext : DbContext
     {
         public DbSet<Bil> Bil { get; set; }
+        public DbSet<Color> Colors { get; set; }
 
         public ApplicationDbContext()
         {
