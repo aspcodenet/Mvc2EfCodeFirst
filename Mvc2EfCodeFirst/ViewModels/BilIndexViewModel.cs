@@ -18,6 +18,14 @@ namespace Mvc2EfCodeFirst.ViewModels
     }
 
 
+    public class BilSearchViewModel
+    {
+        public List<BilListItem> Items { get; set; }
+
+    }
+
+
+
     public class BilCartViewModel
     {
         public List<BilListItem> Items { get; set; }

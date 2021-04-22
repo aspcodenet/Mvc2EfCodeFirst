@@ -28,6 +28,23 @@ namespace Mvc2EfCodeFirst.Controllers
 
 
 
+        public IActionResult Search(string q)
+        {
+            var viewModel = new BilSearchViewModel();
+            viewModel.Items = _dbContext.Bil.Where(e=>e.Manufacturer.Contains(q) || e.RegNo.Contains(q)).Select(e => new BilListItem
+            {
+                Id = e.Id,
+                Manufacturer = e.Manufacturer,
+                Price = e.Price
+            }).ToList();
+
+
+
+            return View(viewModel);
+        }
+
+
+
 
         public IActionResult Index()
         {
