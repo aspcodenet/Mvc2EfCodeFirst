@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Mvc2EfCodeFirst.Data
 {
@@ -22,6 +23,9 @@ namespace Mvc2EfCodeFirst.Data
         public decimal Price { get; set; }
 
         public Color BilColor { get; set; }
+
+        public DateTime? Created { get; set; }
+        public DateTime? Created2 { get; set; }
 
     }
 }
