@@ -8,7 +8,7 @@ namespace Mvc2EfCodeFirst.Data
     {
         public void InitializeDatabase(ApplicationDbContext context)
         {
-            context.Database.Migrate();
+            //context.Database.Migrate();
             SeedColors(context);
 
             context.SaveChanges();
